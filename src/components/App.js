@@ -1,34 +1,13 @@
-import logo from './images/logo.svg';
-import './App.css';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
     <div className="App">
-      <header className="header">
-        <img src={logo} alt="Логотип" className="header__logo" />
-      </header>
-      <main className="main-content">
-        <section className="profile">
-          <div className="profile__img-container">
-            <img className="profile__img" src="#" alt="аватар пользователя" />
-            <button className="profile__avatar-btn" type="button" aria-label="Редактировать аватар"></button>
-          </div>
-          <div className="profile__data">
-            <h1 className="profile__name">Жак-Ив Кусто</h1>
-            <p className="profile__description">Исследователь океана</p>
-            <button type="button" aria-label="Изменить информацию о себе" className="profile__edit-btn"></button>
-          </div>
-          <button type="button" aria-label="Добавить фото" className="profile__add-btn"></button>
-        </section>
-        <section className="cards">
-          <ul className="cards__list">
-
-          </ul>
-        </section>
-      </main>
-      <footer className="footer">
-        <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
-      </footer>
+      <Header />
+      <Main />
+      <Footer />
       <div className="popup popup_type_edit-profile">
         <form name="user" method="post" className="popup__form user-form" novalidate>
           <h3 className="popup__heading">Редактировать профиль</h3>
