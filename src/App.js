@@ -1,10 +1,11 @@
+import logo from './images/logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="header">
-        <div className="header__logo"></div>
+        <img src={logo} alt="Логотип" className="header__logo" />
       </header>
       <main className="main-content">
         <section className="profile">
@@ -13,8 +14,8 @@ function App() {
             <button className="profile__avatar-btn" type="button" aria-label="Редактировать аватар"></button>
           </div>
           <div className="profile__data">
-            <h1 className="profile__name"></h1>
-            <p className="profile__description"></p>
+            <h1 className="profile__name">Жак-Ив Кусто</h1>
+            <p className="profile__description">Исследователь океана</p>
             <button type="button" aria-label="Изменить информацию о себе" className="profile__edit-btn"></button>
           </div>
           <button type="button" aria-label="Добавить фото" className="profile__add-btn"></button>
@@ -55,7 +56,7 @@ function App() {
       <div className="popup popup_type_view-pic">
         <div className="popup__container">
           <figure className="popup__pic-wrap">
-            <img src="#" className="popup__pic" />
+            <img alt="#" src="#" className="popup__pic" />
             <figcaption className="popup__pic-caption"></figcaption>
           </figure>
           <button type="button" aria-label="Закрыть" className="popup__close-btn popup__close-btn_for_view-pic"></button>
@@ -81,10 +82,10 @@ function App() {
       </div>
       <template id="cardItemTemplate">
         <li className="cards__item">
-          <img className="cards__image" src="#" />
+          <img className="cards__image" src="#" alt="#" />
           <button type="button" aria-label="Удалить" className="cards__delete-btn"></button>
           <div className="cards__rating">
-            <h2 className="cards__title"></h2>
+            <h2 className="cards__title">#</h2>
             <div className="cards__heart-container">
               <button type="button" aria-label="Поставить лайк" className="cards__heart"></button>
               <p className="cards__hearts-number">0</p>
