@@ -51,15 +51,12 @@ function App() {
         loadingButton="Сохранение..."
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-        children={
-          <>
-            <input id="username-input" type="text" name="name" className="popup__input username" placeholder="Валентин Петров" minLength="2" maxLength="40" required />
-            <span id="username-input-error" className="popup__input-error"></span>
-            <input id="activity-input" type="text" name="about" className="popup__input activity" placeholder="Род занятий. Например, программист" minLength="2" maxLength="200" required />
-            <span id="activity-input-error" className="popup__input-error"></span>
-          </>
-        }
-      />
+      >
+        <input id="username-input" type="text" name="name" className="popup__input username" placeholder="Валентин Петров" minLength="2" maxLength="40" required />
+        <span id="username-input-error" className="popup__input-error"></span>
+        <input id="activity-input" type="text" name="about" className="popup__input activity" placeholder="Род занятий. Например, программист" minLength="2" maxLength="200" required />
+        <span id="activity-input-error" className="popup__input-error"></span>
+      </PopupWithForm>
       <PopupWithForm
         name="add-card"
         title="Новое место"
@@ -67,15 +64,12 @@ function App() {
         loadingButton="Сохранение..."
         isOpen={isAddCardPopupOpen}
         onClose={closeAllPopups}
-        children={
-          <>
-            <input id="place-name-input" type="text" name="name" className="popup__input place-name" placeholder="Название" minLength="1" maxLength="30" required />
-            <span id="place-name-input-error" className="popup__input-error"></span>
-            <input id="picture-link-input" type="url" name="link" className="popup__input picture-link" placeholder="Ссылка на картинку" required />
-            <span id="picture-link-input-error" className="popup__input-error"></span>
-          </>
-        }
-      />
+      >
+        <input id="place-name-input" type="text" name="name" className="popup__input place-name" placeholder="Название" minLength="1" maxLength="30" required />
+        <span id="place-name-input-error" className="popup__input-error"></span>
+        <input id="picture-link-input" type="url" name="link" className="popup__input picture-link" placeholder="Ссылка на картинку" required />
+        <span id="picture-link-input-error" className="popup__input-error"></span>
+      </PopupWithForm>
       <PopupWithForm
         name="update-avatar"
         title="Обновить аватар"
@@ -83,13 +77,10 @@ function App() {
         loadingButton="Сохранение..."
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-        children={
-          <>
-            <input id="avatar-link-input" type="url" name="avatar" className="popup__input avatar-link" placeholder="Ссылка на аватар" required />
-            <span id="avatar-link-input-error" className="popup__input-error"></span>
-          </>
-        }
-      />
+      >
+        <input id="avatar-link-input" type="url" name="avatar" className="popup__input avatar-link" placeholder="Ссылка на аватар" required />
+        <span id="avatar-link-input-error" className="popup__input-error"></span>
+      </PopupWithForm>
       <PopupWithForm
         name="confirm-deletion"
         title="Вы уверены?"

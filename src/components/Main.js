@@ -36,14 +36,14 @@ function Main({ onEditAvatar, onEditProfile, onAddCard, onCardClick }) {
       <section className="profile">
         <div className="profile__img-container">
           <img className="profile__img" src={userAvatar} alt="аватар пользователя" />
-          <button onClick={onEditAvatar} className="profile__avatar-btn" type="button" aria-label="Редактировать аватар"></button>
+          <button onClick={onEditAvatar} className="profile__avatar-btn" type="button" aria-label="Редактировать аватар" />
         </div>
         <div className="profile__data">
           <h1 className="profile__name">{userName}</h1>
           <p className="profile__description">{userDescription}</p>
-          <button onClick={onEditProfile} type="button" aria-label="Изменить информацию о себе" className="profile__edit-btn"></button>
+          <button onClick={onEditProfile} type="button" aria-label="Изменить информацию о себе" className="profile__edit-btn" />
         </div>
-        <button onClick={onAddCard} type="button" aria-label="Добавить фото" className="profile__add-btn"></button>
+        <button onClick={onAddCard} type="button" aria-label="Добавить фото" className="profile__add-btn" />
       </section>
       <section className="cards">
         <ul className="cards__list">
