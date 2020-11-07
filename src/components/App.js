@@ -9,23 +9,29 @@ function App() {
   const [ isEditProfilePopupOpen, setIsEditProfilePopupOpen ] = React.useState(false);
   const [ isAddCardPopupOpen, setIsAddCardPopupOpen ] = React.useState(false);
   const [ isEditAvatarPopupOpen, setIsEditAvatarPopupOpen ] = React.useState(false);
+  const [ selectedCard, setSelectedCard ] = React.useState(false);
+
+  function handleCardClick(cardData) {
+    setSelectedCard(cardData);
+  }
 
   function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
   }
 
   function handleEditProfileClick() {
-    setIsEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
   }
 
   function handleAddCardClick() {
-    setIsAddCardPopupOpen(true);
+    setIsAddCardPopupOpen(!isAddCardPopupOpen);
   }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddCardPopupOpen(false);
+    setSelectedCard(false);
   }
 
   return (
@@ -35,6 +41,7 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddCard={handleAddCardClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
       <PopupWithForm
@@ -42,13 +49,13 @@ function App() {
         title="Редактировать профиль"
         defaultButton="Сохранить"
         loadingButton="Сохранение..."
-        isOpen={isEditProfilePopupOpen ? 'popup_opened' : ''}
+        isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
         children={
           <>
-            <input id="username-input" type="text" name="name" className="popup__input username" placeholder="Валентин Петров" minlength="2" maxlength="40" required />
+            <input id="username-input" type="text" name="name" className="popup__input username" placeholder="Валентин Петров" minLength="2" maxLength="40" required />
             <span id="username-input-error" className="popup__input-error"></span>
-            <input id="activity-input" type="text" name="about" className="popup__input activity" placeholder="Род занятий. Например, программист" minlength="2" maxlength="200" required />
+            <input id="activity-input" type="text" name="about" className="popup__input activity" placeholder="Род занятий. Например, программист" minLength="2" maxLength="200" required />
             <span id="activity-input-error" className="popup__input-error"></span>
           </>
         }
@@ -58,11 +65,11 @@ function App() {
         title="Новое место"
         defaultButton="Создать"
         loadingButton="Сохранение..."
-        isOpen={isAddCardPopupOpen ? 'popup_opened' : ''}
+        isOpen={isAddCardPopupOpen}
         onClose={closeAllPopups}
         children={
           <>
-            <input id="place-name-input" type="text" name="name" className="popup__input place-name" placeholder="Название" minlength="1" maxlength="30" required />
+            <input id="place-name-input" type="text" name="name" className="popup__input place-name" placeholder="Название" minLength="1" maxLength="30" required />
             <span id="place-name-input-error" className="popup__input-error"></span>
             <input id="picture-link-input" type="url" name="link" className="popup__input picture-link" placeholder="Ссылка на картинку" required />
             <span id="picture-link-input-error" className="popup__input-error"></span>
@@ -74,7 +81,7 @@ function App() {
         title="Обновить аватар"
         defaultButton="Сохранить"
         loadingButton="Сохранение..."
-        isOpen={isEditAvatarPopupOpen ? 'popup_opened' : ''}
+        isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         children={
           <>
@@ -89,20 +96,11 @@ function App() {
         defaultButton="Да"
         loadingButton="Удаление..."
       />
-      <ImagePopup />
-      <template id="cardItemTemplate">
-        <li className="cards__item">
-          <img className="cards__image" src="#" alt="#" />
-          <button type="button" aria-label="Удалить" className="cards__delete-btn"></button>
-          <div className="cards__rating">
-            <h2 className="cards__title">#</h2>
-            <div className="cards__heart-container">
-              <button type="button" aria-label="Поставить лайк" className="cards__heart"></button>
-              <p className="cards__hearts-number">0</p>
-            </div>
-          </div>
-        </li>
-      </template>
+      <ImagePopup
+        name="view-pic"
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
     </>
   );
 }
