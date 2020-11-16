@@ -4,12 +4,16 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import {rejectPromise} from '../utils/utils';
+import api from '../utils/api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 function App() {
   const [ isEditProfilePopupOpen, setIsEditProfilePopupOpen ] = React.useState(false);
   const [ isAddCardPopupOpen, setIsAddCardPopupOpen ] = React.useState(false);
   const [ isEditAvatarPopupOpen, setIsEditAvatarPopupOpen ] = React.useState(false);
   const [ selectedCard, setSelectedCard ] = React.useState(false);
+  const [ currentUser, setCurrentUser ] = React.useState('');
 
   function handleCardClick(cardData) {
     setSelectedCard(cardData);
@@ -34,8 +38,18 @@ function App() {
     setSelectedCard(false);
   }
 
+  React.useEffect(() => {
+    api.getUserInfo()
+      .then((userData) => {
+        setCurrentUser(userData)
+      })
+      .catch((err) => {
+        rejectPromise(err);
+      })
+  }, []);
+
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onEditAvatar={handleEditAvatarClick}
@@ -92,7 +106,7 @@ function App() {
         card={selectedCard}
         onClose={closeAllPopups}
       />
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 

@@ -20,9 +20,7 @@ class Api {
         authorization: this._token
       }
     })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
+    .then(this._parseResponseFromServer)
   }
 
   getUserInfo() {
@@ -32,9 +30,7 @@ class Api {
         authorization: this._token
       }
     })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
+    .then(this._parseResponseFromServer)
   }
 
   getDataForRendered() {
@@ -50,9 +46,7 @@ class Api {
       },
       body: JSON.stringify(data)
     })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
+    .then(this._parseResponseFromServer)
   }
 
   setUserInfo(data) {
@@ -64,9 +58,7 @@ class Api {
       },
       body: JSON.stringify(data)
     })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
+    .then(this._parseResponseFromServer)
   }
 
   setAvatar(data) {
@@ -78,9 +70,7 @@ class Api {
       },
       body: JSON.stringify(data)
     })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
+    .then(this._parseResponseFromServer)
   }
 
   deleteCard(id) {
@@ -90,33 +80,18 @@ class Api {
         authorization: this._token
       }
     })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
+    .then(this._parseResponseFromServer)
   }
 
-  putLike(id) {
+  changeLikeCardStatus(id, like) {
     return fetch(`${this._url}/${this._groupId}/cards/likes/${id}`, {
-      method: 'PUT',
+      method: like ? 'PUT' : 'DELETE',
       headers: {
-        authorization: this._token
+        authorization: this._token,
+        'Content-Type': 'application/json'
       }
     })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
-  }
-
-  deleteLike(id) {
-    return fetch(`${this._url}/${this._groupId}/cards/likes/${id}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: this._token
-      }
-    })
-    .then((res) => {
-      return this._parseResponseFromServer(res);
-    })
+      .then(this._parseResponseFromServer)
   }
 }
 

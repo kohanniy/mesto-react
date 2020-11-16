@@ -1,5 +1,7 @@
+@import url(./_hidden/cards__delete-btn_hidden.css);
+@import url(./_visible/cards__delete-btn_visible.css);
+
 .cards__delete-btn {
-  display: none;
   width: 18px;
   height: 19px;
   background: transparent url(../../../images/cards-delete-icon.svg) no-repeat 0 0;
