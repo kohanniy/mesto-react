@@ -23,7 +23,7 @@ function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose }) {
 
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
-      <form onSubmit={handleSubmit} name="edit-avatar" className="popup__form place-form" noValidate>
+      <form onSubmit={handleSubmit} name="edit-avatar" className="popup__form" noValidate>
         <h3 className="popup__heading">Обновить аватар</h3>
         <input
           id="avatar-link-input"

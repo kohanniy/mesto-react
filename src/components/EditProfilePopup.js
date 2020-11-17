@@ -34,7 +34,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       <form
         onSubmit={handleSubmit}
         name="edit-profile"
-        className="popup__form place-form"
+        className="popup__form"
         noValidate
       >
         <h3 className="popup__heading">Редактировать профиль</h3>
