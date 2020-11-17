@@ -5,8 +5,7 @@ import {rejectPromise} from '../utils/utils';
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 function Main({ onEditAvatar, onEditProfile, onAddCard, onCardClick }) {
-  const [cards, setCards] = React.useState([]);
-
+ const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {

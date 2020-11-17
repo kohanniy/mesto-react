@@ -8,6 +8,7 @@ import {rejectPromise} from '../utils/utils';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 function App() {
   const [ isEditProfilePopupOpen, setIsEditProfilePopupOpen ] = React.useState(false);
@@ -50,6 +51,17 @@ function App() {
       })
   }
 
+  function handleUpdateAvatar({ avatar }) {
+    api.setAvatar({avatar})
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        rejectPromise(err);
+      })
+  }
+
   React.useEffect(() => {
     api.getUserInfo()
       .then((userData) => {
@@ -71,9 +83,14 @@ function App() {
       />
       <Footer />
       <EditProfilePopup
-      isOpen={isEditProfilePopupOpen}
-      onClose={closeAllPopups}
-      onUpdateUser={handleUpdateUser}
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
+        onUpdateUser={handleUpdateUser}
+      />
+      <EditAvatarPopup
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+        onUpdateAvatar={handleUpdateAvatar}
       />
       <PopupWithForm
         name="add-card"
@@ -87,17 +104,6 @@ function App() {
         <span id="place-name-input-error" className="popup__input-error"></span>
         <input id="picture-link-input" type="url" name="link" className="popup__input picture-link" placeholder="Ссылка на картинку" required />
         <span id="picture-link-input-error" className="popup__input-error"></span>
-      </PopupWithForm>
-      <PopupWithForm
-        name="update-avatar"
-        title="Обновить аватар"
-        defaultButton="Сохранить"
-        loadingButton="Сохранение..."
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      >
-        <input id="avatar-link-input" type="url" name="avatar" className="popup__input avatar-link" placeholder="Ссылка на аватар" required />
-        <span id="avatar-link-input-error" className="popup__input-error"></span>
       </PopupWithForm>
       <PopupWithForm
         name="confirm-deletion"
