@@ -91,7 +91,7 @@ class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(this._parseResponseFromServer)
+    .then(this._parseResponseFromServer)
   }
 }
 

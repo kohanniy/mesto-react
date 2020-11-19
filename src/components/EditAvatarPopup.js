@@ -1,8 +1,8 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { handlestopPropagation } from '../utils/utils';
+import { handleStopPropagation } from '../utils/utils';
 
-function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose }) {
+function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose, isLoading }) {
   const [ avatar, setAvatar ] = React.useState('');
   const currentUser = React.useContext(CurrentUserContext);
   const inputAvatarRef = React.useRef();
@@ -24,7 +24,7 @@ function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose }) {
 
   return (
     <div onClick={onClose} className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
-      <form onClick={handlestopPropagation} onSubmit={handleSubmit} name="edit-avatar" className="popup__form" noValidate>
+      <form onClick={handleStopPropagation} onSubmit={handleSubmit} name="edit-avatar" className="popup__form" noValidate>
         <h3 className="popup__heading">Обновить аватар</h3>
         <input
           id="avatar-link-input"
@@ -38,18 +38,7 @@ function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose }) {
           required
         />
         <span id="avatar-link-input-error" className="popup__input-error" />
-        <button
-          type="submit"
-          className="popup__button popup__button_default"
-        >
-          Сохранить
-        </button>
-        <button
-          type="button"
-          className="popup__button popup__button_isLoading"
-        >
-          Сохранение...
-        </button>
+        <button type="submit" className="popup__button">{isLoading ? 'Сохранение...' : 'Сохранить'}</button>
         <button onClick={onClose} type="button" aria-label="Закрыть" className="popup__close-btn" />
       </form>
     </div>

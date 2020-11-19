@@ -3,18 +3,7 @@ export function rejectPromise(err) {
   console.log(err);
 }
 
-//Состояние кнопок, пока данные загружаются
-export function renderLoading(popup, isLoading) {
-  if (isLoading) {
-    popup.defaultButton.style.display = 'none';
-    popup.isLoadingButton.style.display = 'block';
-  } else {
-      popup.defaultButton.style.display = 'block';
-      popup.isLoadingButton.style.display = 'none';
-    }
-}
-
 // Прекращение передачи текущего события
-export function handlestopPropagation(e) {
+export function handleStopPropagation(e) {
   e.stopPropagation();
 }

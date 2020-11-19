@@ -1,7 +1,7 @@
 import React from 'react';
-import { handlestopPropagation } from '../utils/utils';
+import { handleStopPropagation } from '../utils/utils';
 
-function ConfirmDeletionPopup({ isOpen, onClose, cardDelete }) {
+function ConfirmDeletionPopup({ isOpen, onClose, cardDelete, isLoading }) {
   function handleSubmit(e) {
     e.preventDefault();
     cardDelete(isOpen);
@@ -9,11 +9,10 @@ function ConfirmDeletionPopup({ isOpen, onClose, cardDelete }) {
 
   return (
     <div onClick={onClose} className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
-      <form onClick={handlestopPropagation} onSubmit={(handleSubmit)} name="confirm-deletion" className="popup__form place-form" noValidate>
+      <form onClick={handleStopPropagation} onSubmit={(handleSubmit)} name="confirm-deletion" className="popup__form" noValidate>
         <h3 className="popup__heading">Вы уверены?</h3>
-        <button type="submit" className="popup__button popup__button_default">Да</button>
-        <button type="button" className="popup__button popup__button_isLoading">Удаление</button>
-        <button onClick={onClose} type="button" aria-label="Закрыть" className="popup__close-btn popup__close-btn_for_add-card" />
+        <button type="submit" className="popup__button">{isLoading ? 'Удаление...' : 'Да'}</button>
+        <button onClick={onClose} type="button" aria-label="Закрыть" className="popup__close-btn" />
       </form>
     </div>
   );

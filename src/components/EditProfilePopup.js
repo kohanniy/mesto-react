@@ -1,8 +1,8 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { handlestopPropagation } from '../utils/utils';
+import { handleStopPropagation } from '../utils/utils';
 
-function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
 
   const [ name, setName] = React.useState('');
   const [ description, setDescription ] = React.useState('');
@@ -33,7 +33,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   return (
     <div onClick={onClose} className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
       <form
-        onClick={handlestopPropagation}
+        onClick={handleStopPropagation}
         onSubmit={handleSubmit}
         name="edit-profile"
         className="popup__form"
@@ -62,8 +62,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           minLength="2" maxLength="200" required
         />
         <span id="activity-input-error" className="popup__input-error" />
-        <button type="submit" className="popup__button popup__button_default">Сохранить</button>
-        <button type="button" className="popup__button popup__button_isLoading">Сохранение...</button>
+        <button type="submit" className="popup__button">{isLoading ? 'Сохранение...' : 'Сохранить'}</button>
         <button onClick={onClose} type="button" aria-label="Закрыть" className="popup__close-btn" />
       </form>
     </div>
