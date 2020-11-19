@@ -3,7 +3,7 @@ import Card from './Card';
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 function Main(props) {
-  const { onEditAvatar, onEditProfile, onAddCard, onCardClick, cards, onCardLike, onCardDelete } = props;
+  const { onEditAvatar, onEditProfile, onAddCard, onCardClick, cards, onCardLike, onConfirmDeletionPopupOpen } = props;
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
@@ -43,7 +43,7 @@ function Main(props) {
         <ul className="cards__list">
           {cards.map(card =>
             <Card
-              onCardDelete={onCardDelete}
+              onConfirmDeletionPopupOpen={onConfirmDeletionPopupOpen}
               onCardLike={onCardLike}
               onCardClick={onCardClick}
               key={card._id.toString()}
