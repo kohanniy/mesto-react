@@ -1,4 +1,5 @@
 import React from 'react';
+import { handlestopPropagation } from '../utils/utils';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   const [ name, setName ] = React.useState('');
@@ -21,8 +22,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   }
 
   return (
-    <div className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
-      <form onSubmit={handleSubmit} name="add-card" className="popup__form" noValidate>
+    <div onClick={onClose} className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
+      <form onClick={handlestopPropagation} onSubmit={handleSubmit} name="add-card" className="popup__form" noValidate>
         <h3 className="popup__heading">Новое место</h3>
         <input onChange={handlePlaceNameInputChange} id="place-name-input" type="text" name="place-name" className="popup__input place-name" placeholder="Название" minLength="1" maxLength="30" required />
         <span id="place-name-input-error" className="popup__input-error" />

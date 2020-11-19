@@ -1,5 +1,6 @@
 import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { handlestopPropagation } from '../utils/utils';
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
@@ -30,8 +31,9 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   }
 
   return (
-    <div className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
+    <div onClick={onClose} className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
       <form
+        onClick={handlestopPropagation}
         onSubmit={handleSubmit}
         name="edit-profile"
         className="popup__form"

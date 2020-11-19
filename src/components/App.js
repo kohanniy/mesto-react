@@ -93,19 +93,23 @@ function App() {
   }
 
   React.useEffect(() => {
-    api.getInitialCards()
-      .then((cardsData) => {
-        setCards(cardsData);
-      })
-      .catch((err) => {
-        rejectPromise(err);
-      })
-  }, []);
+    function handlePopupsEscClose(e) {
+      if (e.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    if (isEditProfilePopupOpen || isAddCardPopupOpen || isEditAvatarPopupOpen || selectedCard) {
+      document.addEventListener('keydown', handlePopupsEscClose);
+    }
+    return () => document.removeEventListener('keydown', handlePopupsEscClose);
+  }, [isEditProfilePopupOpen, isAddCardPopupOpen, isEditAvatarPopupOpen, selectedCard]);
 
   React.useEffect(() => {
-    api.getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData)
+    api.getDataForRendered()
+      .then((data) => {
+        const [ cardsData, userData ] = data;
+        setCards(cardsData);
+        setCurrentUser(userData);
       })
       .catch((err) => {
         rejectPromise(err);

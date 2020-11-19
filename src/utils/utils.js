@@ -13,3 +13,8 @@ export function renderLoading(popup, isLoading) {
       popup.isLoadingButton.style.display = 'none';
     }
 }
+
+// Прекращение передачи текущего события
+export function handlestopPropagation(e) {
+  e.stopPropagation();
+}
