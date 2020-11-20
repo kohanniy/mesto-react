@@ -24,12 +24,27 @@ function Card({ cardData, onCardClick, onCardLike, onConfirmDeletionPopupOpen })
 
   return (
     <li className="cards__item">
-      <img onClick={handleClick} className="cards__image" src={cardData.link} alt={cardData.name} />
-      <button onClick={handleDeleteIconClick} type="button" aria-label="Удалить" className={cardDeleteButtonClassName}></button>
+      <img
+        onClick={handleClick}
+        className="cards__image"
+        src={cardData.link}
+        alt={cardData.name}
+      />
+      <button
+        onClick={handleDeleteIconClick}
+        type="button"
+        aria-label="Удалить"
+        className={cardDeleteButtonClassName}
+      />
       <div className="cards__rating">
         <h2 className="cards__title">{cardData.name}</h2>
         <div className="cards__heart-container">
-          <button onClick={handleLikeClick} type="button" aria-label="Поставить лайк" className={cardLikeButtonClassName}></button>
+          <button
+            onClick={handleLikeClick}
+            type="button"
+            aria-label="Поставить лайк"
+            className={cardLikeButtonClassName}
+          />
           <p className="cards__hearts-number">{cardData.likes.length}</p>
         </div>
       </div>
