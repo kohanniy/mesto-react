@@ -82,6 +82,9 @@ function App() {
         const newCards = cards.map((c) => c._id === card._id ? newCard : c);
         setCards(newCards);
       })
+      .catch((err) => {
+        rejectPromise(err);
+      })
   }
 
   function confirmDeletionPopupOpen(cardData) {

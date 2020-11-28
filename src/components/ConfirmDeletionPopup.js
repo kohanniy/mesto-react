@@ -1,5 +1,5 @@
 import React from 'react';
-import { handleStopPropagation } from '../utils/utils';
+import PopupWithForm from './PopupWithForm';
 
 function ConfirmDeletionPopup({ isOpen, onClose, cardDelete, isLoading }) {
   function handleSubmit(e) {
@@ -8,29 +8,15 @@ function ConfirmDeletionPopup({ isOpen, onClose, cardDelete, isLoading }) {
   }
 
   return (
-    <div
-      onClick={onClose}
-      className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}
+    <PopupWithForm
+      isOpen={isOpen}
+      onSubmit={handleSubmit}
+      name="confirm-deletion"
+      onClose={onClose}
+      title="Вы уверены?"
+      buttonText={isLoading ? 'Удаление...' : 'Да'}
     >
-      <form
-        onClick={handleStopPropagation}
-        onSubmit={(handleSubmit)}
-        name="confirm-deletion"
-        className="popup__form"
-        noValidate
-      >
-        <h3 className="popup__heading">Вы уверены?</h3>
-        <button type="submit" className="popup__button">
-          {isLoading ? 'Удаление...' : 'Да'}
-        </button>
-        <button
-          onClick={onClose}
-          type="button"
-          aria-label="Закрыть"
-          className="popup__close-btn"
-        />
-      </form>
-    </div>
+    </PopupWithForm>
   );
 }
 
