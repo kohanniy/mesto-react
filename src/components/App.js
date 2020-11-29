@@ -122,18 +122,20 @@ function App() {
       })
   }
 
+  //закрытие по Esc
   React.useEffect(() => {
     function handlePopupsEscClose(e) {
       if (e.key === 'Escape') {
         closeAllPopups();
       }
     }
-    if (isEditProfilePopupOpen || isAddCardPopupOpen || isEditAvatarPopupOpen || selectedCard || isConfirmDeletionPopup) {
-      document.addEventListener('keydown', handlePopupsEscClose);
-    }
-    return () => document.removeEventListener('keydown', handlePopupsEscClose);
-  }, [isEditProfilePopupOpen, isAddCardPopupOpen, isEditAvatarPopupOpen, selectedCard, isConfirmDeletionPopup]);
 
+    document.addEventListener('keydown', handlePopupsEscClose);
+
+    return () => document.removeEventListener('keydown', handlePopupsEscClose);
+  }, []);
+
+  //получение и отрисовка данных при загрузке страницы
   React.useEffect(() => {
     api.getDataForRendered()
       .then((data) => {

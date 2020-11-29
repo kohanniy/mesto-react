@@ -1,24 +1,19 @@
 import React from 'react';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import PopupWithForm from './PopupWithForm';
+import { useFormAndValidation } from '../hooks/useFormAndValidation';
 
 function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose, isLoading }) {
-  const [ avatar, setAvatar ] = React.useState('');
-  const currentUser = React.useContext(CurrentUserContext);
-  const inputAvatarRef = React.useRef();
+  const { values, handleChange, errors, isValid, resetForm } = useFormAndValidation();
+
 
   React.useEffect(() => {
-    setAvatar(currentUser.avatar);
-  }, [currentUser, isOpen]);
-
-  function handleAvatarInputChange(e) {
-    setAvatar(e.target.value);
-  }
+    resetForm({});
+  }, [isOpen, resetForm]);
 
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar({
-      avatar: inputAvatarRef.current.value
+      avatar: values.avatar || ''
     });
   }
 
@@ -30,19 +25,23 @@ function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose, isLoading }) {
       onClose={onClose}
       title="Обновить аватар"
       buttonText={isLoading ? 'Сохранение...' : 'Сохранить'}
+      isDisabled={!isValid}
     >
       <input
         id="avatar-link"
         type="url"
         name="avatar"
-        className="popup__input avatar-link"
-        ref={inputAvatarRef}
+        className="popup__input"
         placeholder="Ссылка на аватар"
-        onChange={handleAvatarInputChange}
-        value={avatar || ''}
+        onChange={handleChange}
+        value={values.avatar || ''}
         required
       />
-      <span id="avatar-linkerror" className="popup__input-error" />
+      <span
+        id="avatar-linkerror"
+        className="popup__input-error">
+          {errors.avatar || ''}
+        </span>
     </PopupWithForm>
   );
 }

@@ -9,6 +9,7 @@ function PopupWithForm({
   title,
   children,
   buttonText,
+  isDisabled = false
 }) {
   return (
       <div onClick={onClose} className={`popup ${isOpen ? 'popup_opened' : 'popup_closed'}`}>
@@ -23,7 +24,8 @@ function PopupWithForm({
           {children}
           <button
             type="submit"
-            className={`popup__button`}
+            className={`popup__button ${isDisabled && 'popup__button_disabled'}`}
+            disabled={isDisabled}
           >
             {buttonText}
           </button>
